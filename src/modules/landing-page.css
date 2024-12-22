@@ -1,0 +1,76 @@
+#landing-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+}
+
+#landing-bg-credit {
+    color: white;
+    text-shadow: 0px 0px 10px black;
+    opacity: 60%;
+    position: absolute;
+    bottom: 1%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    z-index: 3;
+    
+}
+
+#landing-bg-credit > a {
+    color: white;
+}
+
+#landing-bg-credit > a:hover {
+    color: blue;
+}
+
+#landing-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 40%;   
+    left: 50%;  
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+#landing-logo {
+    width: clamp(100px, 50vw, 300px);
+    filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.5));
+}
+
+#landing-main > form {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.landing-search {
+    font-size: 1.5rem;
+    height: 2.5rem;
+}
+
+#landing-search-bar {
+    width: clamp(200px, 80vw, 600px);
+    padding: 0.25rem 2.5rem 0.25rem 0.75rem;
+    border-radius: 10px;
+    border: none;
+}
+
+#landing-search-btn {
+    width: 2rem;
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 0.25rem;
+    transform: scale(1.25);
+}
+
+#landing-search-btn:hover {
+    cursor: pointer;
+}
