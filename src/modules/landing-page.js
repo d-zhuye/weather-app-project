@@ -1,6 +1,7 @@
 import sunset from "../assets/landing-background.jpg";
 import logo from "../assets/logo.png";
 import searchIcon from "../assets/search-icon.svg";
+import { getUserCoordinates } from "./geolocation";
 
 const content = document.getElementById("content");
 
@@ -8,6 +9,7 @@ function appendBackground() {
   const bgIMG = document.createElement("img");
   bgIMG.src = sunset;
   bgIMG.id = "landing-bg";
+  bgIMG.classList.add("background");
   bgIMG.alt = "Cloudy sky at sunset";
 
   content.appendChild(bgIMG);
@@ -18,37 +20,61 @@ function appendBackground() {
   content.appendChild(bgCredit);
 }
 
-function initializeSearch() {
-    const landingMain = document.createElement("div");
-    landingMain.id = "landing-main";
-    content.appendChild(landingMain);
+function initializeLandingPage() {
+  // Reset Page
+  const header = document.getElementById("header");
+  header.style.display = "none";
 
-    // Add logo
-    const logoIMG = document.createElement("img");
-    logoIMG.id = "landing-logo"
-    logoIMG.src = logo;
-    logoIMG.alt = "Logo of sun behind rain clouds";
-    landingMain.appendChild(logoIMG);
+  content.innerHTML = "";
+  content.padding = "0px";
 
-    // Add search bar
-    const form = document.createElement("form");
-    landingMain.appendChild(form);
+  appendBackground();
 
-    const searchBar = document.createElement("input");
-    searchBar.id = "landing-search-bar";
-    searchBar.classList.add("landing-search");
-    searchBar.type = "text";
-    searchBar.name = "landing-search-bar";
-    form.appendChild(searchBar);
+  const landingMain = document.createElement("div");
+  landingMain.id = "landing-main";
+  content.appendChild(landingMain);
 
-    const searchButton = document.createElement("button");
-    searchButton.type = "submit";
-    searchButton.id = "landing-search-btn";
-    searchButton.classList.add("landing-search");
-    searchButton.innerHTML = `<img src=${searchIcon} alt="Search Icon">`;
-    form.appendChild(searchButton);
-    
+  // Add logo
+  const logoIMG = document.createElement("img");
+  logoIMG.id = "landing-logo";
+  logoIMG.src = logo;
+  logoIMG.alt = "Logo of sun behind rain clouds";
+  landingMain.appendChild(logoIMG);
+
+  // Add search bar
+  const form = document.createElement("form");
+  landingMain.appendChild(form);
+
+  const searchContainer = document.createElement("div");
+  searchContainer.classList.add("search-container");
+  form.appendChild(searchContainer);
+
+  const searchBar = document.createElement("input");
+  searchBar.type = "text";
+  searchBar.id = "landing-search-bar";
+  searchBar.classList.add("search-bar");
+  searchBar.classList.add("landing-search");
+  searchBar.name = "landing-search-bar";
+  searchBar.placeholder = "Search for a city or zip code";
+  searchContainer.appendChild(searchBar);
+
+  const searchButton = document.createElement("button");
+  searchButton.type = "submit";
+  searchButton.id = "landing-search-btn";
+  searchButton.classList.add("search-btn");
+  searchButton.innerHTML = `<img src=${searchIcon} alt="Search Icon">`;
+  searchContainer.appendChild(searchButton);
+
+  const currentLocation = document.createElement("button");
+  currentLocation.id = "current-location-button"
+  currentLocation.textContent = "Use current location";
+  landingMain.appendChild(currentLocation);
+
+  currentLocation.addEventListener("click", (e) => {
+    e.stopPropagation();
+    getUserCoordinates();
+  })
+
 }
 
-appendBackground();
-initializeSearch();
+initializeLandingPage();
