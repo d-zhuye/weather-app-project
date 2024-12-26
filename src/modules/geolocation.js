@@ -55,7 +55,6 @@ async function getUserWeather(city, lat, long) {
   // If lat and long are available fetch weather using coords for accuracy
   if (lat && long) {
     try {
-      console.log("Using coords");
       response = await fetch(
         `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${lat},${long}?unitGroup=us&key=KN8KKWLCB443EKTSE8MTPE76Z`
       );
@@ -65,9 +64,7 @@ async function getUserWeather(city, lat, long) {
   } else {
     // else fetch using city name
     try {
-      console.log(city);
       const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&key=KN8KKWLCB443EKTSE8MTPE76Z&contentType=json`;
-      console.log("Using city" + city + "at" + url);
       response = await fetch(url);
     } catch (err) {
       console.log(err);
