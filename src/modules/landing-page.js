@@ -1,11 +1,11 @@
 import sunset from "../assets/landing-background.jpg";
 import logo from "../assets/logo.png";
 import searchIcon from "../assets/search-icon.svg";
-import { getUserCoordinates } from "./geolocation";
+import { userSearch, getUserCoordinates, getUserWeather } from "./geolocation";
 
 const content = document.getElementById("content");
 
-function appendBackground() {
+function renderLandingBackground() {
   const bgIMG = document.createElement("img");
   bgIMG.src = sunset;
   bgIMG.id = "landing-bg";
@@ -20,16 +20,7 @@ function appendBackground() {
   content.appendChild(bgCredit);
 }
 
-function initializeLandingPage() {
-  // Reset Page
-  const header = document.getElementById("header");
-  header.style.display = "none";
-
-  content.innerHTML = "";
-  content.padding = "0px";
-
-  appendBackground();
-
+function renderLandingPage() {
   const landingMain = document.createElement("div");
   landingMain.id = "landing-main";
   content.appendChild(landingMain);
@@ -65,16 +56,34 @@ function initializeLandingPage() {
   searchButton.innerHTML = `<img src=${searchIcon} alt="Search Icon">`;
   searchContainer.appendChild(searchButton);
 
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    userSearch.city = searchBar.value;
+    form.reset();
+    getUserWeather(userSearch.city);
+  })
+
   const currentLocation = document.createElement("button");
-  currentLocation.id = "current-location-button"
+  currentLocation.id = "current-location-button";
   currentLocation.textContent = "Use current location";
   landingMain.appendChild(currentLocation);
 
   currentLocation.addEventListener("click", (e) => {
     e.stopPropagation();
     getUserCoordinates();
-  })
+  });
+}
 
+export function initializeLandingPage() {
+  // Reset Page
+  document.body.style.overflowY = "hidden";
+  const header = document.getElementById("header");
+  header.style.display = "none";
+  content.innerHTML = "";
+  content.padding = "0px";
+
+  renderLandingBackground();
+  renderLandingPage();
 }
 
 initializeLandingPage();
