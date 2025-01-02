@@ -33,7 +33,7 @@
 
 #landing-logo {
   width: clamp(100px, 50vw, 300px);
-  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 0 0.75rem rgba(177, 150, 150, 0.5));
 }
 
 #landing-main > form {
