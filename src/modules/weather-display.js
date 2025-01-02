@@ -20,6 +20,7 @@ const weatherIcon = {
   "clear-day": sunnyIcon,
   "clear-night": clearNight,
   cloudy: cloudyIcon,
+  "thunder-showers-day": thunderIcon
 };
 
 let weatherReportCity;
@@ -52,7 +53,7 @@ function renderHeader() {
   searchBar.classList.add("search-bar");
   searchBar.classList.add("landing-search");
   searchBar.name = "header-search-bar";
-  searchBar.placeholder = "Search for a city or zip code";
+  searchBar.placeholder = "Search for a city";
   searchContainer.appendChild(searchBar);
 
   const searchButton = document.createElement("button");
