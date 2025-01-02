@@ -46,7 +46,7 @@ function renderLandingPage() {
   searchBar.classList.add("search-bar");
   searchBar.classList.add("landing-search");
   searchBar.name = "landing-search-bar";
-  searchBar.placeholder = "Search for a city or zip code";
+  searchBar.placeholder = "Search for a city";
   searchContainer.appendChild(searchBar);
 
   const searchButton = document.createElement("button");
